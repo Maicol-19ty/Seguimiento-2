@@ -41,7 +41,7 @@ public class Main {
 
         String modelo = JOptionPane.showInputDialog(null,
                 String.format("Ingrese el modelo del auto que desea comprar:\n\n1. %s\n2. %s",
-                        referencia1.modelo, referencia2.modelo));
+                        referencia1.getModelo(), referencia2.getModelo()));
 
         Car carro = null;
         if (modelo.equals("1")) {
@@ -53,28 +53,11 @@ public class Main {
             System.exit(0);
         }
 
-        String caracteristicas = String.join(", ", carro.caracteristicas);
+        String caracteristicas = String.join(", ", carro.getCaracteristicas());
 
         String resultado = String.format("El auto que usted desea comprar es un: %s %s%nAño: %d%nPrecio: $%d%nCaracterísticas: %s",
-                carro.marca, carro.modelo, carro.año, carro.precio, caracteristicas);
+                carro.getMarca(), carro.getModelo(), carro.getAño(), carro.getPrecio(), caracteristicas);
 
         JOptionPane.showMessageDialog(null, resultado);
     }
-
-    static class Car {
-        String marca;
-        String modelo;
-        int año;
-        int precio;
-        String[] caracteristicas;
-
-        Car(String marca, String modelo, int año, int precio, String[] caracteristicas) {
-            this.marca = marca;
-            this.modelo = modelo;
-            this.año = año;
-            this.precio = precio;
-            this.caracteristicas = caracteristicas;
-        }
-    }
 }
-

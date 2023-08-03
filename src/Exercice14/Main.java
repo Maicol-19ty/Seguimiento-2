@@ -16,20 +16,8 @@ public class Main {
             return;
         }
 
-        // Generate and show the multiplication table in a pop-up window
-        StringBuilder table = new StringBuilder();
-        table.append("-----------------------------\n");
-        table.append("Tabla de multiplicar del ").append(num).append("\n");
-        table.append("-----------------------------\n");
-
-        for (int i = 1; i <= 10; i++) {
-            int result = num * i;
-            table.append(num).append("\t x \t").append(i).append("\t = \t").append(result).append("\n");
-        }
-
-        table.append("-----------------------------");
-
-        JOptionPane.showMessageDialog(null, table.toString(), "Tabla de multiplicar", JOptionPane.PLAIN_MESSAGE);
+        // Create the multiplication table and display it
+        MultiplicationTable table = new MultiplicationTable(num);
+        JOptionPane.showMessageDialog(null, table.getTable(), "Tabla de multiplicar", JOptionPane.PLAIN_MESSAGE);
     }
 }
-

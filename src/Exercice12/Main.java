@@ -7,11 +7,11 @@ public class Main {
         Equipo equipo1 = new Equipo();
         Equipo equipo2 = new Equipo();
 
-        equipo1.nombre = JOptionPane.showInputDialog(null, "Ingrese el nombre del primer equipo");
-        equipo1.puntos = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese el marcador del primer equipo"));
+        equipo1.setNombre(JOptionPane.showInputDialog(null, "Ingrese el nombre del primer equipo"));
+        equipo1.setPuntos(Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese el marcador del primer equipo")));
 
-        equipo2.nombre = JOptionPane.showInputDialog(null, "Ingrese el nombre del segundo equipo");
-        equipo2.puntos = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese el marcador del segundo equipo"));
+        equipo2.setNombre(JOptionPane.showInputDialog(null, "Ingrese el nombre del segundo equipo"));
+        equipo2.setPuntos(Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese el marcador del segundo equipo")));
 
         Fecha[] fechas = new Fecha[3];
 
@@ -22,10 +22,10 @@ public class Main {
             for (int j = 0; j < 2; j++) {
                 Partido partido = new Partido();
 
-                partido.equipo = JOptionPane.showInputDialog(null,
-                        String.format("Ingrese el nombre del equipo %d para la fecha %d", j + 1, i + 1));
-                partido.puntos = Integer.parseInt(JOptionPane.showInputDialog(null,
-                        String.format("Ingrese el marcador del equipo %d para la fecha %d", j + 1, i + 1)));
+                partido.setEquipo(JOptionPane.showInputDialog(null,
+                        String.format("Ingrese el nombre del equipo %d para la fecha %d", j + 1, i + 1)));
+                partido.setPuntos(Integer.parseInt(JOptionPane.showInputDialog(null,
+                        String.format("Ingrese el marcador del equipo %d para la fecha %d", j + 1, i + 1))));
 
                 fecha.partidos[j] = partido;
             }
@@ -35,32 +35,17 @@ public class Main {
 
         for (Fecha fecha : fechas) {
             for (Partido partido : fecha.partidos) {
-                if (partido.equipo.equals(equipo1.nombre)) {
-                    equipo1.puntos += partido.puntos;
-                } else if (partido.equipo.equals(equipo2.nombre)) {
-                    equipo2.puntos += partido.puntos;
+                if (partido.getEquipo().equals(equipo1.getNombre())) {
+                    equipo1.setPuntos(equipo1.getPuntos() + partido.getPuntos());
+                } else if (partido.getEquipo().equals(equipo2.getNombre())) {
+                    equipo2.setPuntos(equipo2.getPuntos() + partido.getPuntos());
                 }
             }
         }
 
         String ranking = String.format("Ranking de equipos:\n\n%s con %d puntos\n%s con %d puntos",
-                equipo1.nombre, equipo1.puntos, equipo2.nombre, equipo2.puntos);
+                equipo1.getNombre(), equipo1.getPuntos(), equipo2.getNombre(), equipo2.getPuntos());
 
         JOptionPane.showMessageDialog(null, ranking);
     }
-
-    static class Equipo {
-        String nombre;
-        int puntos;
-    }
-
-    static class Fecha {
-        Partido[] partidos;
-    }
-
-    static class Partido {
-        String equipo;
-        int puntos;
-    }
 }
-
